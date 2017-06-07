@@ -790,7 +790,6 @@ def test_ridge_classifier_no_support_multilabel():
     assert_raises(ValueError, RidgeClassifier().fit, X, y)
 
 
-@ignore_warnings
 def test_dtype_match():
     rng = np.random.RandomState(0)
     alpha = 1.0
@@ -810,7 +809,7 @@ def test_dtype_match():
         ridge_32.fit(X_32, y_32)
         assert_equal(ridge_32.coef_.dtype, X_32.dtype)
 
-        # Check type consistency bits
+        # Check type consistency 64 bits
         ridge_64 = Ridge(alpha=alpha, solver=solver)
         ridge_64.fit(X_64, y_64)
         assert_equal(ridge_64.coef_.dtype, X_64.dtype)
