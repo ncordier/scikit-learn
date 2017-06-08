@@ -80,7 +80,7 @@ def _solve_sparse_cg(X, y, alpha, max_iter=None, tol=1e-3, verbose=0):
 
 def _solve_lsqr(X, y, alpha, max_iter=None, tol=1e-3):
     n_samples, n_features = X.shape
-    coefs = np.empty((y.shape[1], n_features))
+    coefs = np.empty((y.shape[1], n_features), dtype=X.dtype)
     n_iter = np.empty(y.shape[1], dtype=np.int32)
 
     # According to the lsqr documentation, alpha = damp^2.
