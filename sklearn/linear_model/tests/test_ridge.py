@@ -815,4 +815,4 @@ def test_dtype_match():
         assert_equal(ridge_64.coef_.dtype, X_64.dtype)
 
         # Check accuracy consistency
-        assert_almost_equal(ridge_32.coefs_, ridge_64.coefs_.astype(np.float32))
+        assert_almost_equal(ridge_32.coef_, ridge_64.coef_.astype(np.float32))
