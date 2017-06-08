@@ -111,7 +111,7 @@ def _solve_cholesky(X, y, alpha):
         return linalg.solve(A, Xy, sym_pos=True,
                             overwrite_a=True).T
     else:
-        coefs = np.empty([n_targets, n_features])
+        coefs = np.empty([n_targets, n_features], dtype=X.dtype)
         for coef, target, current_alpha in zip(coefs, Xy.T, alpha):
             A.flat[::n_features + 1] += current_alpha
             coef[:] = linalg.solve(A, target, sym_pos=True,
