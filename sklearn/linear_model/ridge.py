@@ -36,7 +36,7 @@ from ..metrics.scorer import check_scoring
 def _solve_sparse_cg(X, y, alpha, max_iter=None, tol=1e-3, verbose=0):
     n_samples, n_features = X.shape
     X1 = sp_linalg.aslinearoperator(X)
-    coefs = np.empty((y.shape[1], n_features))
+    coefs = np.empty((y.shape[1], n_features), dtype=X.dtype)
 
     if n_features > n_samples:
         def create_mv(curr_alpha):
