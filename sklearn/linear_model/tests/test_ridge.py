@@ -801,7 +801,7 @@ def test_dtype_match():
     y_32 = y_64.astype(np.float32)
 
     # solvers = ("svd", "sparse_cg", "cholesky", "lsqr", "sag")
-    solvers = ["svd"]
+    solvers = ["svd", "sparse_cg", "cholesky", "lsqr"]
     for solver in solvers:
 
         # Check type consistency 32bits
