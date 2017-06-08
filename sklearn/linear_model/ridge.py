@@ -186,7 +186,7 @@ def _solve_svd(X, y, alpha):
     idx = s > 1e-15  # same default value as scipy.linalg.pinv
     s_nnz = s[idx][:, np.newaxis]
     UTy = np.dot(U.T, y)
-    d = np.zeros((s.size, alpha.size))
+    d = np.zeros((s.size, alpha.size), dtype=X.dtype)
     d[idx] = s_nnz / (s_nnz ** 2 + alpha)
     d_UT_y = d * UTy
     return np.dot(Vt.T, d_UT_y).T
@@ -327,7 +327,7 @@ def ridge_regression(X, y, alpha, sample_weight=None, solver='auto',
         y = check_array(y, dtype=np.float64, ensure_2d=False, order='F')
     else:
         X = check_array(X, accept_sparse=['csr', 'csc', 'coo'],
-                        dtype=np.float64)
+                        dtype='numeric')
         y = check_array(y, dtype='numeric', ensure_2d=False)
     check_consistent_length(X, y)
 
@@ -371,7 +371,7 @@ def ridge_regression(X, y, alpha, sample_weight=None, solver='auto',
             X, y = _rescale_data(X, y, sample_weight)
 
     # There should be either 1 or n_targets penalties
-    alpha = np.asarray(alpha).ravel()
+    alpha = np.asarray(alpha, dtype=X.dtype).ravel()
     if alpha.size not in [1, n_targets]:
         raise ValueError("Number of targets and number of penalties "
                          "do not correspond: %d != %d"
