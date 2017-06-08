@@ -470,7 +470,7 @@ class _BaseRidge(six.with_metaclass(ABCMeta, LinearModel)):
 
     def fit(self, X, y, sample_weight=None):
 
-        if self.solver in ['svd']:
+        if self.solver in ['svd', 'sparse_cg']:
             _dtype = [np.float64, np.float32]
         else:
             _dtype = np.float64
